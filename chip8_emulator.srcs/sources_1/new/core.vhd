@@ -35,7 +35,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity core is
 --  Port ( );
     Port (
-        clk : in std_logic
+        clk : in std_logic;
+        clear_screen: inout std_logic;
     );
 
 end core;
@@ -47,7 +48,12 @@ architecture Behavioral of core is
             memory_addr: in std_logic_vector(15 downto 0); 
             memory_write: inout std_logic;
             memory_data_in: in std_logic_vector(7 downto 0); 
-            memory_data_out: out std_logic_vector(7 downto 0)
+            memory_data_out_lsb: out std_logic_vector(7 downto 0);
+            memory_data_out_msb: out std_logic_vector(7 downto 0);
+            stack_addr: in _std_logic_vector(15 downto 0); 
+            stack_write: inout std_logic; 
+            stack_data_in: in std_logic_vector(7 downto 0);
+            stack_data_out: out std_logic_vector(7 downto 0)
         );
     end component;
     
@@ -86,8 +92,7 @@ architecture Behavioral of core is
         OP_RND, OP_DRW, OP_SKP, OP_SKNP
     );
     signal state : instruction := OP_CLS;
-
-    --- Instruction fields ---
+    --- Instruction fields 
     signal opcode : std_logic_vector(15 downto 0) := X"0000";
     signal PC     : std_logic_vector(15 downto 0) := X"0000"; 
     signal SP     : std_logic_vector(15 downto 0) := X"0000";
@@ -96,10 +101,10 @@ architecture Behavioral of core is
     signal Y      : std_logic_vector(3 downto 0) := X"0"; 
     signal NNN    : std_logic_vector(11 downto 0) := X"000";
     signal KK     : std_logic_vector(7 downto 0) := X"00";
-    --- data path signal ---
+    --- data path signal
     signal data_path_msb : std_logic_vector(4 downto 0);
     signal data_path_lsb : std_logic_vector(4 downto 0);
-    --- Register control ---
+    --- Register control 
     signal RA_write: std_logic;
     signal RA_data_in: std_logic_vector (7 downto 0);
     signal RA_data_out: std_logic_vector (7 downto 0);
@@ -108,19 +113,23 @@ architecture Behavioral of core is
     signal RB_data_in: std_logic_vector(7 downto 0);
     signal RB_data_out: std_logic_vector(7 downto 0);
     signal RB_addr: std_logic_vector(3 downto 0);
-    -- Flag control --
+    -- Flag control
     signal flag_write: std_logic; 
     signal flag_status_in: std_logic;
     signal flag_status_out: std_logic;
-    --- Timers ---
+    --- Timers
     signal delay_timer: std_logic_vector(7 downto 0);
     signal sound_timer: std_logic_vector(7 downto 0);
-    --- Cache --- 
+    --- Cache
     signal memory_addr: std_logic_vector(15 downto 0);
     signal memory_write: std_logic;
     signal memory_data_in: std_logic_vector(7 downto 0);
-    signal memory_data_out: std_logic_vector(7 downto 0);
-
+    signal memory_data_out_lsb: std_logic_vector(7 downto 0);
+    signal memory_data_out_msb: std_logic_vector(7 downto 0); 
+    signal stack_addr: std_logic_vector(15 downto 0); 
+    signal stack_write: std_logic; 
+    signal stack_data_in: std_logic_vector(7 downto 0); 
+    signal stack_data_out: std_logic_vector(7 downto 0);
 begin
 
     processor : process(clk)
@@ -130,8 +139,11 @@ begin
                 when FETCH => 
                     --- Fetch OP Instruction --- 
                     memory_addr <= PC;
-                    
+                    if rising_edge(clk) then
+                        opcode <= std_logic_vector(shift_left(unsigned(memory_data_out_msb), 8) or unsigned(memory_data_out_lsb));
+                    end if;
                 when DECODE =>
+                    
                     X <= opcode(11 downto 8);
                     RA_addr <= X;
                     Y   <= opcode(7 downto 4);
@@ -182,12 +194,44 @@ begin
                     stage <= EXECUTE;
 
                 when EXECUTE =>
-                --- CLS [-] ---
-                --- RET [-] --- 
-                --- SYS [-] --- 
-                --- JP addr [X] ---
-                --- CALL addr [-] ---
+                                when EXECUTE =>
+                --- CLS [-] --- IMPLEMENTED
+                --- RET [-] --- NOT IMPLEMENTED
+                --- SYS [-] --- NOT IMPLEMENTED
+                --- JP addr [1nnn] --- IMPLEMENTED (via data_path_msb = X"1")
+                --- CALL addr [2nnn] --- NOT IMPLEMENTED
+                --- SE Vx, byte [3xkk] --- IMPLEMENTED (data_path_msb = X"3")
+                --- SNE Vx, byte [4xkk] --- IMPLEMENTED (data_path_msb = X"4")
+                --- SE Vx, Vy [5xy0] --- IMPLEMENTED (data_path_msb = X"5")
+                --- LD Vx, byte [6xkk] --- IMPLEMENTED (data_path_msb = X"6")
+                --- ADD Vx, byte [7xkk] --- IMPLEMENTED (data_path_msb = X"7")
+                --- LD Vx, Vy [8xy0] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"0")
+                --- OR Vx, Vy [8xy1] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"1")
+                --- AND Vx, Vy [8xy2] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"2")
+                --- XOR Vx, Vy [8xy3] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"3")
+                --- ADD Vx, Vy [8xy4] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"4")
+                --- SUB Vx, Vy [8xy5] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"5")
+                --- SHR Vx {, Vy} [8xy6] --- IMPLEMENTED
+                --- SUBN Vx, Vy [8xy7] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"7")
+                --- SHL Vx {, Vy} [8xyE] --- IMPLEMENTED
+                --- LD I, addr [Annn] --- IMPLEMENTED (data_path_msb = X"A")
+                --- JP V0, addr [Bnnn] --- IMPLEMENTED (data_path_msb = X"B")
+                --- RND Vx, byte [Cxkk] --- NOT IMPLEMENTED
+                --- DRW Vx, Vy, nibble [Dxyn] --- NOT IMPLEMENTED
+                --- SKP Vx [Ex9E] --- NOT IMPLEMENTED
+                --- SKNP Vx [ExA1] --- NOT IMPLEMENTED
+                --- LD Vx, DT [Fx07] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"07")
+                --- LD Vx, K [Fx0A] --- NOT IMPLEMENTED
+                --- LD DT, Vx [Fx15] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"15")
+                --- LD ST, Vx [Fx18] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"18")
+                --- ADD I, Vx [Fx1E] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"1E")
+                --- LD F, Vx [Fx29] --- NOT IMPLEMENTED
+                --- LD B, Vx [Fx33] --- NOT IMPLEMENTED
+                --- LD [I], Vx [Fx55] --- IMPLEMENTED
+                --- LD Vx, [I] [Fx65] --- NOT IMPLEMENTED
                     case state is
+                        when OP_CLS => 
+                            clear_screen <= '1';
                         when OP_SE =>
                             if RA_data_out = RB_data_out then
                                 PC <= std_logic_vector(unsigned(PC) + 2);
@@ -243,13 +287,51 @@ begin
                                             RA_data_in <= delay_timer;
                                             RA_write <= '1';
                                         when X"0A" => null;
+                                        when x"55" => 
+                                            if rising_edge(clk) then
+                                                memory_addr  <= I;
+                                                memory_data_in <= RA_data_in;
+                                                memory_write <= '1';
+                                            end if;
+                                            if rising_edge(clk) then
+                                                memory_addr  <= std_logic_vector(unsigned(I));
+                                                memory_data_in <= std_logic_vector(unsigned(RA_data_in) mod 10);
+                                                memory_write <= '1';
+                                            end if;
+                                            if rising_edge(clk) then
+                                                memory_addr  <= std_logic_vector(unsigned(I) + 1);
+                                                memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 100) / 10);
+                                                memory_write <= '1';
+                                            end if;
+                                            if rising_edge(clk) then
+                                                memory_addr  <= std_logic_vector(unsigned(I) + 2);
+                                                memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 1000) / 100);
+                                                memory_write <= '1';
+                                            end if;
                                         when X"15" => 
                                             delay_timer <= RA_data_out;
                                         when X"18" => 
                                             sound_timer <= RA_data_out;
                                         when X"9" => null; 
+                                        
                                     end case;
                             end case;
+                        when OP_SHL => 
+                            if RA_data_in & x"80" == x"10" then
+                                flag_status_in <= '1';
+                            elsif 
+                                flag_status_in <= '0';
+                            end if;
+                            flag_write <= '1';
+                            RA_data_in <= std_logic_vector(unsigned(RA_data_out) * 2); 
+                        when OP_SHR => 
+                            if RA_data_in & x"01" == x"01" then
+                                flag_status_in <= '1';
+                            elsif 
+                                flag_status_in <= '0';
+                            end if;
+                            flag_write <= '1';
+                            RA_data_in <= std_logic_vector(unsigned(RA_data_out) / 2);
                         when OP_JP => 
                             case data_path_msb is 
                                 when X"1" => PC <= NNN;
@@ -308,7 +390,12 @@ begin
             memory_addr => memory_addr,
             memory_write => memory_write,
             memory_data_in => memory_data_in,
-            memory_data_out => memory_data_out
+            memory_data_out_lsb => memory_data_out_lsb, 
+            memory_data_out_msb => memory_data_out_msb,
+            stack_addr => stack_addr,
+            stack_write => stack_write,
+            stack_data_in => stack_data_in,
+            stack_data_out => stack_data_out
         );
     flag_access: flag 
         port map (
