@@ -1,0 +1,46 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.750164",
+   "Default View_TopLeft":"405,-295",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0 TLS
+#  -string -flagsOSRD
+preplace port port-id_sys_clock -pg 1 -lvl 0 -x -50 -y 250 -defaultsOSRD
+preplace port port-id_reset_rtl -pg 1 -lvl 0 -x -50 -y 150 -defaultsOSRD
+preplace port port-id_vid_active_video -pg 1 -lvl 4 -x 1160 -y -110 -defaultsOSRD
+preplace port port-id_vid_hsync -pg 1 -lvl 4 -x 1160 -y -40 -defaultsOSRD
+preplace port port-id_vid_vsync -pg 1 -lvl 4 -x 1160 -y 0 -defaultsOSRD
+preplace port port-id_vid_locked -pg 1 -lvl 4 -x 1160 -y 90 -defaultsOSRD
+preplace port port-id_s_axis_tvalid -pg 1 -lvl 0 -x -50 -y -190 -defaultsOSRD
+preplace port port-id_s_axis_tready -pg 1 -lvl 4 -x 1160 -y -160 -defaultsOSRD
+preplace portBus vid_data -pg 1 -lvl 4 -x 1160 -y -80 -defaultsOSRD
+preplace portBus s_axis_tdata -pg 1 -lvl 0 -x -50 -y -230 -defaultsOSRD
+preplace inst v_tc_0 -pg 1 -lvl 2 -x 550 -y -50 -defaultsOSRD
+preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 3 -x 940 -y 10 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 2 -x 550 -y 240 -defaultsOSRD
+preplace inst rst_clk_wiz_74M -pg 1 -lvl 3 -x 940 -y 310 -defaultsOSRD
+preplace inst axis_subset_converter_0 -pg 1 -lvl 1 -x 200 -y -200 -defaultsOSRD
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 1 3 430 410 NJ 410 1130
+preplace netloc clk_wiz_clk_out1 1 0 3 -30 -80 430 -150 680
+preplace netloc clk_wiz_locked 1 2 1 670 250n
+preplace netloc rst_clk_wiz_74M_peripheral_aresetn 1 0 4 -20 -10 420 170 670J 210 1120
+preplace netloc sys_clock_1 1 0 2 NJ 250 NJ
+preplace netloc reset_rtl_1 1 0 3 NJ 150 410 310 690J
+preplace netloc v_axi4s_vid_out_0_vid_active_video 1 3 1 N -110
+preplace netloc v_axi4s_vid_out_0_vid_data 1 3 1 1140 -90n
+preplace netloc v_axi4s_vid_out_0_vid_hsync 1 3 1 1140 -40n
+preplace netloc v_axi4s_vid_out_0_vid_vsync 1 3 1 1140 0n
+preplace netloc v_axi4s_vid_out_0_locked 1 3 1 1140 50n
+preplace netloc s_axis_tdata_1 1 0 1 N -230
+preplace netloc s_axis_tvalid_1 1 0 1 N -190
+preplace netloc axis_subset_converter_0_s_axis_tready 1 0 4 -10 -90 410J -160 680J -190 1140
+preplace netloc v_tc_0_vtiming_out 1 2 1 690 -60n
+preplace netloc axis_subset_converter_0_M_AXIS 1 1 2 410 -170 690J
+levelinfo -pg 1 -50 200 550 940 1160
+pagesize -pg 1 -db -bbox -sgen -210 -520 1320 420
+"
+}
+{
+   "da_board_cnt":"3",
+   "da_clkrst_cnt":"2"
+}

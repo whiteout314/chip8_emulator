@@ -63,7 +63,7 @@ begin
                 stack_write <= '0';
             end if;
             memory_data_out_lsb <=  memory(to_integer(unsigned(memory_addr)));
-            memory_data_out_msb <=  memory(to_integer(unsigned(memory_addr + 2)));
+            memory_data_out_msb <=  memory(to_integer(unsigned(memory_addr)));
         end if;
          
     end process;
