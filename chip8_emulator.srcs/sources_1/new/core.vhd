@@ -47,7 +47,12 @@ architecture Behavioral of core is
             memory_addr: in std_logic_vector(15 downto 0); 
             memory_write: inout std_logic;
             memory_data_in: in std_logic_vector(7 downto 0); 
-            memory_data_out: out std_logic_vector(7 downto 0)
+            memory_data_out_lsb: out std_logic_vector(7 downto 0);
+            memory_data_out_msb: out std_logic_vector(7 downto 0);
+            stack_addr: in _std_logic_vector(15 downto 0); 
+            stack_write: inout std_logic; 
+            stack_data_in: in std_logic_vector(7 downto 0);
+            stack_data_out: out std_logic_vector(7 downto 0)
         );
     end component;
     
@@ -86,7 +91,6 @@ architecture Behavioral of core is
         OP_RND, OP_DRW, OP_SKP, OP_SKNP
     );
     signal state : instruction := OP_CLS;
-
     --- Instruction fields ---
     signal opcode : std_logic_vector(15 downto 0) := X"0000";
     signal PC     : std_logic_vector(15 downto 0) := X"0000"; 
@@ -119,8 +123,12 @@ architecture Behavioral of core is
     signal memory_addr: std_logic_vector(15 downto 0);
     signal memory_write: std_logic;
     signal memory_data_in: std_logic_vector(7 downto 0);
-    signal memory_data_out: std_logic_vector(7 downto 0);
-
+    signal memory_data_out_lsb: std_logic_vector(7 downto 0);
+    signal memory_data_out_msb: std_logic_vector(7 downto 0); 
+    signal stack_addr: std_logic_vector(15 downto 0); 
+    signal stack_write: std_logic; 
+    signal stack_data_in: std_logic_vector(7 downto 0); 
+    signal stack_data_out: std_logic_vector(7 downto 0);
 begin
 
     processor : process(clk)
@@ -130,8 +138,11 @@ begin
                 when FETCH => 
                     --- Fetch OP Instruction --- 
                     memory_addr <= PC;
-                    
+                    if rising_edge(clk) then
+                        opcode <= shift_left(memory_data_out_msb, 8) or memory_data_out_lsb;
+                    end if;
                 when DECODE =>
+                    
                     X <= opcode(11 downto 8);
                     RA_addr <= X;
                     Y   <= opcode(7 downto 4);
@@ -182,11 +193,41 @@ begin
                     stage <= EXECUTE;
 
                 when EXECUTE =>
-                --- CLS [-] ---
-                --- RET [-] --- 
-                --- SYS [-] --- 
-                --- JP addr [X] ---
-                --- CALL addr [-] ---
+                                when EXECUTE =>
+                --- CLS [-] --- NOT IMPLEMENTED
+                --- RET [-] --- NOT IMPLEMENTED
+                --- SYS [-] --- NOT IMPLEMENTED
+                --- JP addr [1nnn] --- IMPLEMENTED (via data_path_msb = X"1")
+                --- CALL addr [2nnn] --- NOT IMPLEMENTED
+                --- SE Vx, byte [3xkk] --- IMPLEMENTED (data_path_msb = X"3")
+                --- SNE Vx, byte [4xkk] --- IMPLEMENTED (data_path_msb = X"4")
+                --- SE Vx, Vy [5xy0] --- IMPLEMENTED (data_path_msb = X"5")
+                --- LD Vx, byte [6xkk] --- IMPLEMENTED (data_path_msb = X"6")
+                --- ADD Vx, byte [7xkk] --- IMPLEMENTED (data_path_msb = X"7")
+                --- LD Vx, Vy [8xy0] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"0")
+                --- OR Vx, Vy [8xy1] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"1")
+                --- AND Vx, Vy [8xy2] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"2")
+                --- XOR Vx, Vy [8xy3] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"3")
+                --- ADD Vx, Vy [8xy4] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"4")
+                --- SUB Vx, Vy [8xy5] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"5")
+                --- SHR Vx {, Vy} [8xy6] --- NOT IMPLEMENTED
+                --- SUBN Vx, Vy [8xy7] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"7")
+                --- SHL Vx {, Vy} [8xyE] --- NOT IMPLEMENTED
+                --- LD I, addr [Annn] --- IMPLEMENTED (data_path_msb = X"A")
+                --- JP V0, addr [Bnnn] --- IMPLEMENTED (data_path_msb = X"B")
+                --- RND Vx, byte [Cxkk] --- NOT IMPLEMENTED
+                --- DRW Vx, Vy, nibble [Dxyn] --- NOT IMPLEMENTED
+                --- SKP Vx [Ex9E] --- NOT IMPLEMENTED
+                --- SKNP Vx [ExA1] --- NOT IMPLEMENTED
+                --- LD Vx, DT [Fx07] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"07")
+                --- LD Vx, K [Fx0A] --- NOT IMPLEMENTED
+                --- LD DT, Vx [Fx15] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"15")
+                --- LD ST, Vx [Fx18] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"18")
+                --- ADD I, Vx [Fx1E] --- IMPLEMENTED (data_path_msb = X"F", lsb = X"1E")
+                --- LD F, Vx [Fx29] --- NOT IMPLEMENTED
+                --- LD B, Vx [Fx33] --- NOT IMPLEMENTED
+                --- LD [I], Vx [Fx55] --- NOT IMPLEMENTED
+                --- LD Vx, [I] [Fx65] --- NOT IMPLEMENTED
                     case state is
                         when OP_SE =>
                             if RA_data_out = RB_data_out then
@@ -308,7 +349,12 @@ begin
             memory_addr => memory_addr,
             memory_write => memory_write,
             memory_data_in => memory_data_in,
-            memory_data_out => memory_data_out
+            memory_data_out_lsb => memory_data_out_lsb, 
+            memory_data_out_msb => memory_data_out_msb,
+            stack_addr => stack_addr,
+            stack_write => stack_write,
+            stack_data_in => stack_data_in,
+            stack_data_out => stack_data_out
         );
     flag_access: flag 
         port map (

@@ -38,7 +38,12 @@ entity cache is
     memory_addr: in std_logic_vector(15 downto 0); 
     memory_write: inout std_logic;
     memory_data_in: in std_logic_vector(7 downto 0); 
-    memory_data_out: out std_logic_vector(7 downto 0)
+    memory_data_out_lsb: out std_logic_vector(7 downto 0);
+    memory_data_out_msb: out std_logic_vector(7 downto 0);
+    stack_addr: in std_logic_vector(15 downto 0);
+    stack_write: inout std_logic;
+    stack_data_in: in std_logic_vector(7 downto 0);
+    stack_data_out: out std_logic_vector(7 downto 0)
   );
 end cache;
 
@@ -53,7 +58,12 @@ begin
                 memory(to_integer(unsigned(memory_addr))) <= memory_data_in;
                 memory_write <= '0';
             end if;
-            memory_data_out <=  memory(to_integer(unsigned(memory_addr)));
+            if stack_write = '1' then
+                memory(to_integer(unsigned(stack_addr))) <= stack_data_in;
+                stack_write <= '0';
+            end if;
+            memory_data_out_lsb <=  memory(to_integer(unsigned(memory_addr)));
+            memory_data_out_msb <=  memory(to_integer(unsigned(memory_addr + 2)));
         end if;
          
     end process;
