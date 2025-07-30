@@ -33,10 +33,9 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity core is
---  Port ( );
     Port (
         clk : in std_logic;
-        clear_screen: inout std_logic;
+        clear_screen: inout std_logic
     );
 
 end core;
@@ -50,7 +49,7 @@ architecture Behavioral of core is
             memory_data_in: in std_logic_vector(7 downto 0); 
             memory_data_out_lsb: out std_logic_vector(7 downto 0);
             memory_data_out_msb: out std_logic_vector(7 downto 0);
-            stack_addr: in _std_logic_vector(15 downto 0); 
+            stack_addr: in std_logic_vector(15 downto 0); 
             stack_write: inout std_logic; 
             stack_data_in: in std_logic_vector(7 downto 0);
             stack_data_out: out std_logic_vector(7 downto 0)
@@ -74,7 +73,7 @@ architecture Behavioral of core is
     component flag 
         port (
             clk: in std_logic;
-            flag_write: in std_logic;
+            flag_write: inout std_logic;
             flag_status_in: in std_logic;
             flag_status_out: out std_logic
         );
@@ -194,7 +193,6 @@ begin
                     stage <= EXECUTE;
 
                 when EXECUTE =>
-                                when EXECUTE =>
                 --- CLS [-] --- IMPLEMENTED
                 --- RET [-] --- NOT IMPLEMENTED
                 --- SYS [-] --- NOT IMPLEMENTED
@@ -317,21 +315,21 @@ begin
                                     end case;
                             end case;
                         when OP_SHL => 
-                            if RA_data_in & x"80" == x"10" then
+                            if (RA_data_in(7) = '1') then
                                 flag_status_in <= '1';
-                            elsif 
+                            else
                                 flag_status_in <= '0';
                             end if;
                             flag_write <= '1';
-                            RA_data_in <= std_logic_vector(unsigned(RA_data_out) * 2); 
+                            RA_data_in <= std_logic_vector(shift_left(unsigned(RA_data_out), 1));
                         when OP_SHR => 
-                            if RA_data_in & x"01" == x"01" then
+                            if (RA_data_in(0) = '1') then
                                 flag_status_in <= '1';
-                            elsif 
+                            else
                                 flag_status_in <= '0';
                             end if;
                             flag_write <= '1';
-                            RA_data_in <= std_logic_vector(unsigned(RA_data_out) / 2);
+                             RA_data_in <= std_logic_vector(shift_right(unsigned(RA_data_out), 1));
                         when OP_JP => 
                             case data_path_msb is 
                                 when X"1" => PC <= NNN;
@@ -366,8 +364,9 @@ begin
                         when others => null;
                     end case;
                     stage <= WRITE;
-
+                 when WRITE => null;
             end case;
+           
         end if;
     end process;
     

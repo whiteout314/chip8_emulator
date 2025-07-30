@@ -1,0 +1,327 @@
+
+*** Running vivado
+    with args -log video_out_axis_subset_converter_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source video_out_axis_subset_converter_0_0.tcl
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Wed Jul 30 00:59:35 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source video_out_axis_subset_converter_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1453.098 ; gain = 64.480 ; free physical = 18895 ; free virtual = 38413
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: video_out_axis_subset_converter_0_0
+Command: synth_design -top video_out_axis_subset_converter_0_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 155331
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1998.719 ; gain = 416.859 ; free physical = 14856 ; free virtual = 34391
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/synth/video_out_axis_subset_converter_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'top_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/top_video_out_axis_subset_converter_0_0.v:60]
+INFO: [Synth 8-6157] synthesizing module 'axis_subset_converter_v1_1_33_core' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ipshared/9a0d/hdl/axis_subset_converter_v1_1_vl_rfs.v:61]
+INFO: [Synth 8-6155] done synthesizing module 'axis_subset_converter_v1_1_33_core' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ipshared/9a0d/hdl/axis_subset_converter_v1_1_vl_rfs.v:61]
+INFO: [Synth 8-6157] synthesizing module 'tdata_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tdata_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tdata_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tdata_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tuser_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tuser_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tuser_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tuser_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tid_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tid_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tid_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tid_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tdest_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tdest_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tdest_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tdest_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tstrb_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tstrb_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tstrb_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tstrb_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tkeep_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tkeep_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tkeep_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tkeep_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tlast_video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tlast_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tlast_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/tlast_video_out_axis_subset_converter_0_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'top_video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/hdl/top_video_out_axis_subset_converter_0_0.v:60]
+INFO: [Synth 8-6155] done synthesizing module 'video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/synth/video_out_axis_subset_converter_0_0.v:53]
+WARNING: [Synth 8-7129] Port tid[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[7] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[6] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[5] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[4] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[3] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[2] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[1] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast[0] in module tlast_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[7] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[6] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[5] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[4] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[3] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[2] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[1] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[0] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tid[0] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast in module tkeep_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[7] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[6] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[5] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[4] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[3] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[2] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[1] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[0] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tid[0] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast in module tstrb_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[7] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[6] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[5] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[4] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[3] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[2] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[1] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[0] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tid[0] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast in module tdest_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tid[0] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[7] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[6] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[5] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[4] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[3] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[2] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[1] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[0] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast in module tid_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[7] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[6] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[5] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[4] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[3] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[2] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[1] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[0] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tid[0] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast in module tuser_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tuser[0] in module tdata_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tid[0] in module tdata_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdest[0] in module tdata_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tkeep[0] in module tdata_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tstrb[0] in module tdata_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tlast in module tdata_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aclk in module axis_subset_converter_v1_1_33_core is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aresetn in module axis_subset_converter_v1_1_33_core is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aclken in module axis_subset_converter_v1_1_33_core is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2077.688 ; gain = 495.828 ; free physical = 14564 ; free virtual = 34122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2095.500 ; gain = 513.641 ; free physical = 14558 ; free virtual = 34118
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2095.500 ; gain = 513.641 ; free physical = 14558 ; free virtual = 34118
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2095.500 ; gain = 0.000 ; free physical = 14554 ; free virtual = 34116
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/video_out_axis_subset_converter_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/video_out_axis_subset_converter_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2168.438 ; gain = 0.000 ; free physical = 14357 ; free virtual = 33908
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2168.438 ; gain = 0.000 ; free physical = 14356 ; free virtual = 33908
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2168.438 ; gain = 586.578 ; free physical = 14519 ; free virtual = 34088
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2176.441 ; gain = 594.582 ; free physical = 14519 ; free virtual = 34088
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/video_out_axis_subset_converter_0_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2176.441 ; gain = 594.582 ; free physical = 14519 ; free virtual = 34088
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 2176.441 ; gain = 594.582 ; free physical = 14513 ; free virtual = 34072
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port aclk in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aresetn in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aclken in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_tstrb[0] in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_tkeep[0] in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_tlast in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_tid[0] in module top_video_out_axis_subset_converter_0_0 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2176.441 ; gain = 594.582 ; free physical = 14369 ; free virtual = 33960
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2245.441 ; gain = 663.582 ; free physical = 14084 ; free virtual = 33677
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2245.441 ; gain = 663.582 ; free physical = 14084 ; free virtual = 33677
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2254.457 ; gain = 672.598 ; free physical = 14074 ; free virtual = 33667
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13583 ; free virtual = 33147
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13591 ; free virtual = 33155
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13614 ; free virtual = 33178
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13622 ; free virtual = 33186
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13646 ; free virtual = 33210
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13650 ; free virtual = 33214
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++-+-----+------+
+| |Cell |Count |
++-+-----+------+
++-+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.270 ; gain = 842.410 ; free physical = 13669 ; free virtual = 33234
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 10 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2424.270 ; gain = 769.473 ; free physical = 13708 ; free virtual = 33272
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2424.277 ; gain = 842.410 ; free physical = 13708 ; free virtual = 33272
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2424.277 ; gain = 0.000 ; free physical = 13708 ; free virtual = 33272
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2424.277 ; gain = 0.000 ; free physical = 13620 ; free virtual = 33200
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: d5d19d42
+INFO: [Common 17-83] Releasing license: Synthesis
+35 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:34 . Memory (MB): peak = 2424.277 ; gain = 971.180 ; free physical = 13725 ; free virtual = 33305
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1429.738; main = 1429.738; forked = 192.167
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3093.441; main = 2424.273; forked = 916.996
+INFO: [Common 17-1381] The checkpoint '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/video_out_axis_subset_converter_0_0_synth_1/video_out_axis_subset_converter_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP video_out_axis_subset_converter_0_0, cache-ID = ba45f557891d19ad
+INFO: [Common 17-1381] The checkpoint '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/video_out_axis_subset_converter_0_0_synth_1/video_out_axis_subset_converter_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file video_out_axis_subset_converter_0_0_utilization_synth.rpt -pb video_out_axis_subset_converter_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jul 30 01:00:19 2025...

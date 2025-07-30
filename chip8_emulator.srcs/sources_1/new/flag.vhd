@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity flag is
   Port ( 
     clk: in std_logic;
-    flag_write: in std_logic;
+    flag_write: inout std_logic;
     flag_status_in: in std_logic;
     flag_status_out: out std_logic
   );
