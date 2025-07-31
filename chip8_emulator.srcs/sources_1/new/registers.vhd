@@ -39,7 +39,7 @@ entity registers is
         RA_write: inout std_logic;
         RA_data_in: in std_logic_vector (7 downto 0); 
         RA_data_out: out std_logic_vector (7 downto 0); 
-        RA_addr: in std_logic_vector(7 downto 0);
+        RA_addr: in std_logic_vector(3 downto 0);
         RB_write: inout std_logic;
         RB_data_in: in std_logic_vector (7 downto 0);
         RB_data_out: out std_logic_vector(7 downto 0);
