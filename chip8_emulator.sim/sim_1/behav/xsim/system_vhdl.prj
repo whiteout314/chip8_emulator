@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../chip8_emulator.ip_user_files/bd/video_out/ip/video_out_v_tc_0_0/sim/video_out_v_tc_0_0.vhd" \
+"../../../../chip8_emulator.ip_user_files/bd/video_out/ip/video_out_rst_clk_wiz_74M_0/sim/video_out_rst_clk_wiz_74M_0.vhd" \
+"../../../../chip8_emulator.srcs/sources_1/new/system.vhd" \
+
+# Do not sort compile order
+nosort

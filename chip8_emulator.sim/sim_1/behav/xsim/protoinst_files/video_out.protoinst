@@ -1,0 +1,30 @@
+{
+	"version": "1.0",
+	"modules": {
+		"video_out": {
+			"proto_instances": {
+				"/axis_subset_converter_0/M_AXIS": {
+					"interface": "xilinx.com:interface:axis:1.0",
+					"ports": {
+						"ACLK": { "actual": "aclk"},
+						"ARESETN": { "actual": "aresetn"},
+						"TDATA": { "actual": "m_axis_tdata[7:0]"},
+						"TREADY": { "actual": "m_axis_tready"},
+						"TVALID": { "actual": "m_axis_tvalid"}
+					}
+				},
+				"/v_axi4s_vid_out_0/video_in": {
+					"interface": "xilinx.com:interface:axis:1.0",
+					"ports": {
+						"ACLK": { "actual": "aclk"},
+						"TDATA": { "actual": "s_axis_video_tdata[7:0]"},
+						"TLAST": { "actual": "s_axis_video_tlast"},
+						"TREADY": { "actual": "s_axis_video_tready"},
+						"TUSER": { "actual": "s_axis_video_tuser"},
+						"TVALID": { "actual": "s_axis_video_tvalid"}
+					}
+				}
+			}
+		}
+	}
+}

@@ -35,34 +35,33 @@ use IEEE.NUMERIC_STD.ALL;
 entity core is
     Port (
         clk : in std_logic;
-        clear_screen: inout std_logic
+        clear_screen: inout std_logic;
+        screen: out std_logic_vector(2047 downto 0);
+        memory_addr: inout std_logic_vector(15 downto 0); 
+        memory_write: inout std_logic;
+        memory_data_in: in std_logic_vector(7 downto 0); 
+        memory_data_out_lsb: inout std_logic_vector(7 downto 0);
+        memory_data_out_msb: inout std_logic_vector(7 downto 0);
+        stack_addr: in std_logic_vector(15 downto 0); 
+        stack_write: inout std_logic; 
+        stack_data_in: in std_logic_vector(7 downto 0);
+        stack_data_out: out std_logic_vector(7 downto 0)
+       
+       
+       
     );
 
 end core;
 
 architecture Behavioral of core is
-    component cache 
-        port (
-            clk: in std_logic;
-            memory_addr: in std_logic_vector(15 downto 0); 
-            memory_write: inout std_logic;
-            memory_data_in: in std_logic_vector(7 downto 0); 
-            memory_data_out_lsb: out std_logic_vector(7 downto 0);
-            memory_data_out_msb: out std_logic_vector(7 downto 0);
-            stack_addr: in std_logic_vector(15 downto 0); 
-            stack_write: inout std_logic; 
-            stack_data_in: in std_logic_vector(7 downto 0);
-            stack_data_out: out std_logic_vector(7 downto 0)
-        );
-    end component;
-    
+  
     component registers
         port (
             clk: in std_logic;
             RA_write: inout std_logic;
             RA_data_in: in std_logic_vector (7 downto 0); 
             RA_data_out: out std_logic_vector (7 downto 0); 
-            RA_addr: in std_logic_vector(7 downto 0);
+            RA_addr: in std_logic_vector(3 downto 0);
             RB_write: inout std_logic;
             RB_data_in: in std_logic_vector (7 downto 0);
             RB_data_out: out std_logic_vector(7 downto 0);
@@ -100,6 +99,7 @@ architecture Behavioral of core is
     signal Y      : std_logic_vector(3 downto 0) := X"0"; 
     signal NNN    : std_logic_vector(11 downto 0) := X"000";
     signal KK     : std_logic_vector(7 downto 0) := X"00";
+    signal N      : std_logic_vector(3 downto 0):= X"0";
     --- data path signal
     signal data_path_msb : std_logic_vector(4 downto 0);
     signal data_path_lsb : std_logic_vector(4 downto 0);
@@ -107,7 +107,7 @@ architecture Behavioral of core is
     signal RA_write: std_logic;
     signal RA_data_in: std_logic_vector (7 downto 0);
     signal RA_data_out: std_logic_vector (7 downto 0);
-    signal RA_addr: std_logic_vector(7 downto 0);
+    signal RA_addr: std_logic_vector(3 downto 0);
     signal RB_write: std_logic;
     signal RB_data_in: std_logic_vector(7 downto 0);
     signal RB_data_out: std_logic_vector(7 downto 0);
@@ -119,16 +119,8 @@ architecture Behavioral of core is
     --- Timers
     signal delay_timer: std_logic_vector(7 downto 0);
     signal sound_timer: std_logic_vector(7 downto 0);
-    --- Cache
-    signal memory_addr: std_logic_vector(15 downto 0);
-    signal memory_write: std_logic;
-    signal memory_data_in: std_logic_vector(7 downto 0);
-    signal memory_data_out_lsb: std_logic_vector(7 downto 0);
-    signal memory_data_out_msb: std_logic_vector(7 downto 0); 
-    signal stack_addr: std_logic_vector(15 downto 0); 
-    signal stack_write: std_logic; 
-    signal stack_data_in: std_logic_vector(7 downto 0); 
-    signal stack_data_out: std_logic_vector(7 downto 0);
+    signal draw_line_index: std_logic_vector(7 downto 0);
+    signal draw_addr: std_logic_vector(7 downto 0);
 begin
 
     processor : process(clk)
@@ -138,17 +130,18 @@ begin
                 when FETCH => 
                     --- Fetch OP Instruction --- 
                     memory_addr <= PC;
-                    if rising_edge(clk) then
-                        opcode <= std_logic_vector(shift_left(unsigned(memory_data_out_msb), 8) or unsigned(memory_data_out_lsb));
-                    end if;
-                when DECODE =>
                     
+                    
+                    
+                when DECODE =>
+                    opcode <= std_logic_vector(shift_left(resize(unsigned(memory_data_out_msb), 16), 8) or resize(unsigned(memory_data_out_lsb), 16));
                     X <= opcode(11 downto 8);
-                    RA_addr <= X;
+                    RA_addr <= std_logic_vector(resize(unsigned(X), 4));
                     Y   <= opcode(7 downto 4);
-                    RB_addr <= Y;
+                    RB_addr <= std_logic_vector(resize(unsigned(Y), 4));
                     NNN <= opcode(11 downto 0);
                     KK  <= opcode(7 downto 0);
+                    N <= opcode(3 downto 0);
                     data_path_msb <= opcode(15 downto 11);
                     data_path_lsb <= opcode(4 downto 0);
                     
@@ -170,7 +163,7 @@ begin
                         when X"7" => state <= OP_ADD;
 
                         when X"8" =>
-                            case opcode(3 downto 0) is
+                           case opcode(3 downto 0) is
                                 when X"0" => state <= OP_LD;
                                 when X"1" => state <= OP_OR;
                                 when X"2" => state <= OP_AND;
@@ -267,7 +260,8 @@ begin
                                     RA_addr <= X;
                                     RA_write <= '1';
                                  when x"F" => 
-                                    I <= std_logic_vector(unsigned(I) + unsigned(RA_data_out));   
+                                    I <= std_logic_vector(unsigned(I) + unsigned(RA_data_out)); 
+                                 when others => null;  
                             end case;
                         when OP_LD => 
                             case data_path_msb is 
@@ -278,41 +272,43 @@ begin
                                     RA_data_in <= RB_data_in;
                                     RA_write <= '1';
                                 when x"A" => 
-                                    I <= NNN;
+                                    I <= std_logic_vector(resize(unsigned(NNN), 16));
                                 when x"F" => 
                                     case data_path_lsb is 
                                         when X"07" => 
                                             RA_data_in <= delay_timer;
                                             RA_write <= '1';
                                         when X"0A" => null;
-                                        when x"55" => 
-                                            if rising_edge(clk) then
-                                                memory_addr  <= I;
-                                                memory_data_in <= RA_data_in;
-                                                memory_write <= '1';
-                                            end if;
-                                            if rising_edge(clk) then
-                                                memory_addr  <= std_logic_vector(unsigned(I));
-                                                memory_data_in <= std_logic_vector(unsigned(RA_data_in) mod 10);
-                                                memory_write <= '1';
-                                            end if;
-                                            if rising_edge(clk) then
-                                                memory_addr  <= std_logic_vector(unsigned(I) + 1);
-                                                memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 100) / 10);
-                                                memory_write <= '1';
-                                            end if;
-                                            if rising_edge(clk) then
-                                                memory_addr  <= std_logic_vector(unsigned(I) + 2);
-                                                memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 1000) / 100);
-                                                memory_write <= '1';
-                                            end if;
+                                        when x"55" => null;
+                                            --- if rising_edge(clk) then
+                                           ---     memory_addr  <= I;
+                                           ---     memory_data_in <= RA_data_in;
+                                           ---     memory_write <= '1';
+                                           --- end if;
+                                           --- if rising_edge(clk) then
+                                           ---     memory_addr  <= std_logic_vector(unsigned(I));
+                                           ---     memory_data_in <= std_logic_vector(unsigned(RA_data_in) mod 10);
+                                           ---     memory_write <= '1';
+                                           ---  end if;
+                                           --- if rising_edge(clk) then
+                                           ---     memory_addr  <= std_logic_vector(unsigned(I) + 1);
+                                           ---     memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 100) / 10);
+                                           ---     memory_write <= '1';
+                                           --- end if;
+                                           --- if rising_edge(clk) then
+                                           ---     memory_addr  <= std_logic_vector(unsigned(I) + 2);
+                                           ---     memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 1000) / 100);
+                                           ---      memory_write <= '1';
+                                           --- end if;
                                         when X"15" => 
                                             delay_timer <= RA_data_out;
                                         when X"18" => 
                                             sound_timer <= RA_data_out;
                                         when X"9" => null; 
+                                        when others => null;
                                         
                                     end case;
+                                 when others => null;
                             end case;
                         when OP_SHL => 
                             if (RA_data_in(7) = '1') then
@@ -332,9 +328,11 @@ begin
                              RA_data_in <= std_logic_vector(shift_right(unsigned(RA_data_out), 1));
                         when OP_JP => 
                             case data_path_msb is 
-                                when X"1" => PC <= NNN;
-                                when X"B" => PC <= std_logic_vector(unsigned(RA_data_out) + unsigned(NNN)); 
-                            end case;                       
+                                when X"1" => PC <= std_logic_vector(resize(unsigned(NNN), 16));
+                                when X"B" => PC <= std_logic_vector(unsigned(RA_data_out) + resize(unsigned(NNN), 16)); 
+                                when others => null;
+                            end case;  
+                        when OP_DRW => NULL;              
                         when OP_SUB => 
                             case data_path_lsb is
                                when X"5" =>   
@@ -359,12 +357,14 @@ begin
                                     RA_data_in <= std_logic_vector(unsigned(RB_data_out) + unsigned(RA_data_out));
                                     RA_addr <= x;
                                     RA_write <= '1';
-                              
+                             when others => null;
                             end case;
                         when others => null;
                     end case;
                     stage <= WRITE;
-                 when WRITE => null;
+                 when WRITE =>
+                    PC <= std_logic_vector(unsigned(PC) + 2);
+                    stage <= FETCH;
             end case;
            
         end if;
@@ -383,19 +383,7 @@ begin
             RB_data_out => RB_data_out,
             RB_addr => RB_addr
         ); 
-    cache_access: cache 
-        port map (
-            clk => clk,
-            memory_addr => memory_addr,
-            memory_write => memory_write,
-            memory_data_in => memory_data_in,
-            memory_data_out_lsb => memory_data_out_lsb, 
-            memory_data_out_msb => memory_data_out_msb,
-            stack_addr => stack_addr,
-            stack_write => stack_write,
-            stack_data_in => stack_data_in,
-            stack_data_out => stack_data_out
-        );
+
     flag_access: flag 
         port map (
             clk => clk,
