@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Wed Jul 30 22:00:39 2025
-# Process ID         : 86915
+# Start of session at: Thu Jul 31 01:28:05 2025
+# Process ID         : 203061
 # Current directory  : /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1
 # Command line       : vivado -log system.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system.tcl
 # Log file           : /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/system.vds
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.1 LTS
 # Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13620H
-# CPU Frequency      : 400.323 MHz
+# CPU Frequency      : 710.625 MHz
 # CPU Physical cores : 10
 # CPU Logical cores  : 16
 # Host memory        : 50116 MB
 # Swap memory        : 4294 MB
 # Total Virtual      : 54411 MB
-# Available Virtual  : 48607 MB
+# Available Virtual  : 46316 MB
 #-----------------------------------------------------------
 source system.tcl -notrace

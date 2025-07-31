@@ -46,11 +46,11 @@ architecture Behavioral of system is
     component cache 
         port(
             clk: in std_logic;
-            memory_addr: in std_logic_vector(15 downto 0); 
+            memory_addr: inout std_logic_vector(15 downto 0); 
             memory_write: inout std_logic;
             memory_data_in: in std_logic_vector(7 downto 0); 
-            memory_data_out_lsb: out std_logic_vector(7 downto 0);
-            memory_data_out_msb: out std_logic_vector(7 downto 0);
+            memory_data_out_lsb: inout std_logic_vector(7 downto 0);
+            memory_data_out_msb: inout std_logic_vector(7 downto 0);
             stack_addr: in std_logic_vector(15 downto 0);
             stack_write: inout std_logic;
             stack_data_in: in std_logic_vector(7 downto 0);
@@ -89,7 +89,7 @@ architecture Behavioral of system is
     signal memory_data_in: std_logic_vector(7 downto 0);
     signal memory_data_out_lsb: std_logic_vector(7 downto 0);
     signal memory_data_out_msb: std_logic_vector(7 downto 0);
-    signal stack_addr: std_logic_vector(7 downto 0); 
+    signal stack_addr: std_logic_vector(15 downto 0); 
     signal stack_write: std_logic;
     signal stack_data_in: std_logic_vector(7 downto 0); 
     signal stack_data_out: std_logic_vector(7 downto 0);
@@ -99,7 +99,8 @@ begin
             clk => clk,
             clear_screen => clear_screen
         );
-    cache: cache 
+        
+    memory: cache 
         port map(
             clk => clk,
             memory_addr => memory_addr,
@@ -112,6 +113,7 @@ begin
             stack_data_in => stack_data_in,
             stack_data_out => stack_data_out
         );
+        
     video: video_out_wrapper 
         port map(
             reset_rtl => reset_rtl,

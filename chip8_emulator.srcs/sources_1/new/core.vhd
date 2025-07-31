@@ -37,11 +37,11 @@ entity core is
         clk : in std_logic;
         clear_screen: inout std_logic;
         screen: out std_logic_vector(2047 downto 0);
-        memory_addr: in std_logic_vector(15 downto 0); 
+        memory_addr: inout std_logic_vector(15 downto 0); 
         memory_write: inout std_logic;
         memory_data_in: in std_logic_vector(7 downto 0); 
-        memory_data_out_lsb: out std_logic_vector(7 downto 0);
-        memory_data_out_msb: out std_logic_vector(7 downto 0);
+        memory_data_out_lsb: inout std_logic_vector(7 downto 0);
+        memory_data_out_msb: inout std_logic_vector(7 downto 0);
         stack_addr: in std_logic_vector(15 downto 0); 
         stack_write: inout std_logic; 
         stack_data_in: in std_logic_vector(7 downto 0);
@@ -99,6 +99,7 @@ architecture Behavioral of core is
     signal Y      : std_logic_vector(3 downto 0) := X"0"; 
     signal NNN    : std_logic_vector(11 downto 0) := X"000";
     signal KK     : std_logic_vector(7 downto 0) := X"00";
+    signal N      : std_logic_vector(3 downto 0):= X"0";
     --- data path signal
     signal data_path_msb : std_logic_vector(4 downto 0);
     signal data_path_lsb : std_logic_vector(4 downto 0);
@@ -118,16 +119,8 @@ architecture Behavioral of core is
     --- Timers
     signal delay_timer: std_logic_vector(7 downto 0);
     signal sound_timer: std_logic_vector(7 downto 0);
-    --- Cache
-    signal memory_addr: std_logic_vector(15 downto 0);
-    signal memory_write: std_logic;
-    signal memory_data_in: std_logic_vector(7 downto 0);
-    signal memory_data_out_lsb: std_logic_vector(7 downto 0);
-    signal memory_data_out_msb: std_logic_vector(7 downto 0); 
-    signal stack_addr: std_logic_vector(15 downto 0); 
-    signal stack_write: std_logic; 
-    signal stack_data_in: std_logic_vector(7 downto 0); 
-    signal stack_data_out: std_logic_vector(7 downto 0);
+    signal draw_line_index: std_logic_vector(7 downto 0);
+    signal draw_addr: std_logic_vector(7 downto 0);
 begin
 
     processor : process(clk)
@@ -148,6 +141,7 @@ begin
                     RB_addr <= std_logic_vector(resize(unsigned(Y), 4));
                     NNN <= opcode(11 downto 0);
                     KK  <= opcode(7 downto 0);
+                    N <= opcode(3 downto 0);
                     data_path_msb <= opcode(15 downto 11);
                     data_path_lsb <= opcode(4 downto 0);
                     
@@ -338,7 +332,7 @@ begin
                                 when X"B" => PC <= std_logic_vector(unsigned(RA_data_out) + resize(unsigned(NNN), 16)); 
                                 when others => null;
                             end case;  
-                        when OP_DRW => null;                     
+                        when OP_DRW => NULL;              
                         when OP_SUB => 
                             case data_path_lsb is
                                when X"5" =>   
