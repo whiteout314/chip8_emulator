@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="calma" Host="calma-HP-Z2-Mini-G3-Workstation" Pid="26606" HostCore="16" HostMemory="48941788">
+    <Process Command="vivado" Owner="root" Host="calma-HP-Z2-Mini-G3-Workstation" Pid="86842" HostCore="16" HostMemory="48941788">
     </Process>
 </ProcessHandle>

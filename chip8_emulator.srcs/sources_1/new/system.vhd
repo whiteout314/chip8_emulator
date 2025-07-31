@@ -43,6 +43,21 @@ entity system is
 end system;
 
 architecture Behavioral of system is
+    component cache 
+        port(
+            clk: in std_logic;
+            memory_addr: in std_logic_vector(15 downto 0); 
+            memory_write: inout std_logic;
+            memory_data_in: in std_logic_vector(7 downto 0); 
+            memory_data_out_lsb: out std_logic_vector(7 downto 0);
+            memory_data_out_msb: out std_logic_vector(7 downto 0);
+            stack_addr: in std_logic_vector(15 downto 0);
+            stack_write: inout std_logic;
+            stack_data_in: in std_logic_vector(7 downto 0);
+            stack_data_out: out std_logic_vector(7 downto 0)
+        );
+    end component;
+    
     component core 
         port (
             clk: in std_logic;
@@ -69,11 +84,33 @@ architecture Behavioral of system is
     signal s_axis_tvalid: std_logic;
     signal s_axis_tready: std_logic;
     signal clear_screen: std_logic;
+    signal memory_addr: std_logic_vector(15 downto 0);
+    signal memory_write: std_logic;  
+    signal memory_data_in: std_logic_vector(7 downto 0);
+    signal memory_data_out_lsb: std_logic_vector(7 downto 0);
+    signal memory_data_out_msb: std_logic_vector(7 downto 0);
+    signal stack_addr: std_logic_vector(7 downto 0); 
+    signal stack_write: std_logic;
+    signal stack_data_in: std_logic_vector(7 downto 0); 
+    signal stack_data_out: std_logic_vector(7 downto 0);
 begin
     processor: core
         port map(
             clk => clk,
             clear_screen => clear_screen
+        );
+    cache: cache 
+        port map(
+            clk => clk,
+            memory_addr => memory_addr,
+            memory_write => memory_write,
+            memory_data_in => memory_data_in,
+            memory_data_out_lsb => memory_data_out_lsb,
+            memory_data_out_msb => memory_data_out_msb,
+            stack_addr => stack_addr,
+            stack_write => stack_write,
+            stack_data_in => stack_data_in,
+            stack_data_out => stack_data_out
         );
     video: video_out_wrapper 
         port map(

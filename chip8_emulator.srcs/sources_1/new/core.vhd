@@ -35,27 +35,26 @@ use IEEE.NUMERIC_STD.ALL;
 entity core is
     Port (
         clk : in std_logic;
-        clear_screen: inout std_logic
+        clear_screen: inout std_logic;
+        screen: out std_logic_vector(2047 downto 0);
+        memory_addr: in std_logic_vector(15 downto 0); 
+        memory_write: inout std_logic;
+        memory_data_in: in std_logic_vector(7 downto 0); 
+        memory_data_out_lsb: out std_logic_vector(7 downto 0);
+        memory_data_out_msb: out std_logic_vector(7 downto 0);
+        stack_addr: in std_logic_vector(15 downto 0); 
+        stack_write: inout std_logic; 
+        stack_data_in: in std_logic_vector(7 downto 0);
+        stack_data_out: out std_logic_vector(7 downto 0)
+       
+       
+       
     );
 
 end core;
 
 architecture Behavioral of core is
-    component cache 
-        port (
-            clk: in std_logic;
-            memory_addr: in std_logic_vector(15 downto 0); 
-            memory_write: inout std_logic;
-            memory_data_in: in std_logic_vector(7 downto 0); 
-            memory_data_out_lsb: out std_logic_vector(7 downto 0);
-            memory_data_out_msb: out std_logic_vector(7 downto 0);
-            stack_addr: in std_logic_vector(15 downto 0); 
-            stack_write: inout std_logic; 
-            stack_data_in: in std_logic_vector(7 downto 0);
-            stack_data_out: out std_logic_vector(7 downto 0)
-        );
-    end component;
-    
+  
     component registers
         port (
             clk: in std_logic;
@@ -338,7 +337,8 @@ begin
                                 when X"1" => PC <= std_logic_vector(resize(unsigned(NNN), 16));
                                 when X"B" => PC <= std_logic_vector(unsigned(RA_data_out) + resize(unsigned(NNN), 16)); 
                                 when others => null;
-                            end case;                       
+                            end case;  
+                        when OP_DRW => null;                     
                         when OP_SUB => 
                             case data_path_lsb is
                                when X"5" =>   
@@ -389,19 +389,7 @@ begin
             RB_data_out => RB_data_out,
             RB_addr => RB_addr
         ); 
-    cache_access: cache 
-        port map (
-            clk => clk,
-            memory_addr => memory_addr,
-            memory_write => memory_write,
-            memory_data_in => memory_data_in,
-            memory_data_out_lsb => memory_data_out_lsb, 
-            memory_data_out_msb => memory_data_out_msb,
-            stack_addr => stack_addr,
-            stack_write => stack_write,
-            stack_data_in => stack_data_in,
-            stack_data_out => stack_data_out
-        );
+
     flag_access: flag 
         port map (
             clk => clk,

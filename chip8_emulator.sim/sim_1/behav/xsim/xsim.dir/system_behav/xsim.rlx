@@ -1,0 +1,12 @@
+
+{ 
+    crc :  8879169259732583573  , 
+    ccp_crc :  0  , 
+    cmdline : " --incr --debug typical --relax --mt 8 -L xil_defaultlib -L axi_lite_ipif_v3_0_4 -L v_tc_v6_2_9 -L v_tc_v6_1_14 -L v_vid_in_axi4s_v4_0_11 -L v_axi4s_vid_out_v4_0_19 -L lib_cdc_v1_0_3 -L proc_sys_reset_v5_0_16 -L axis_infrastructure_v1_1_1 -L axis_register_slice_v1_1_33 -L axis_subset_converter_v1_1_33 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot system_behav xil_defaultlib.system xil_defaultlib.glbl" , 
+    buildDate : "Nov  8 2024" , 
+    buildTime : "22:36:55" , 
+    linkCmd : "/usr/bin/gcc -Wa,-W  -O -fPIC  -m64  -Wl,--no-as-needed  -Wl,--unresolved-symbols=ignore-all  -o \"xsim.dir/system_behav/xsimk\"   \"xsim.dir/system_behav/obj/xsim_0.lnx64.o\" \"xsim.dir/system_behav/obj/xsim_1.lnx64.o\" \"xsim.dir/system_behav/obj/xsim_2.lnx64.o\" \"xsim.dir/system_behav/obj/xsim_3.lnx64.o\" -L\"/tools/Xilinx/Vivado/2024.2/lib/lnx64.o\" -lxv_simulator_kernel    -L/tools/Xilinx/Vivado/2024.2/lib/lnx64.o/../../tps/lnx64/gcc-9.3.0/bin/../lib64 -Wl,--disable-new-dtags -Wl,-rpath=/tools/Xilinx/Vivado/2024.2/lib/lnx64.o/../../tps/lnx64/gcc-9.3.0/bin/../lib64 -lxv_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 
