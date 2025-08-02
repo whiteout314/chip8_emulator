@@ -57,8 +57,9 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
-set_param project.hsv.suppressChildGraphs 0
-set_param synth.incrementalSynthesisCache ./.Xil/Vivado-83159-calma-HP-Z2-Mini-G3-Workstation/incrSyn
+set_param chipscope.maxJobs 4
+set_param xicom.use_bs_reader 1
+set_param synth.incrementalSynthesisCache ./.Xil/Vivado-47467-calma-HP-Z2-Mini-G3-Workstation/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -67,10 +68,8 @@ create_project -in_memory -part xc7z020clg400-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.cache/wt [current_project]
 set_property parent.project_path /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:zybo-z7-20:part0:1.2 [current_project]
@@ -78,28 +77,10 @@ set_property ip_output_repo /home/calma/Workspace/personal/chip8_emulator/chip8_
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/imports/hdl/video_out_wrapper.v
 read_vhdl -library xil_defaultlib {
-  /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/cache.vhd
   /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd
-  /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/flag.vhd
-  /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/registers.vhd
   /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd
 }
-add_files /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/bd/video_out/video_out.bd
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_tc_0_0/video_out_v_tc_0_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_tc_0_0/video_out_v_tc_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_axi4s_vid_out_0_1/video_out_v_axi4s_vid_out_0_1_clocks.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_axi4s_vid_out_0_1/video_out_v_axi4s_vid_out_0_1_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0_board.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/video_out_ooc.xdc]
-
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -109,8 +90,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
+read_xdc /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/constrs_1/new/master.xdc
+set_property used_in_implementation false [get_files /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/constrs_1/new/master.xdc]
+
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/utils_1/imports/synth_1/system.dcp

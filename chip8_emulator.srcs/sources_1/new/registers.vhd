@@ -49,7 +49,8 @@ end registers;
 
 architecture Behavioral of registers is
     type register_arr is array (0 to 14) of std_logic_vector (7 downto 0);
-    signal VX: register_arr;
+    signal VX: register_arr := (others => (others => '0'));
+    
 begin
     process(clk) 
     begin 

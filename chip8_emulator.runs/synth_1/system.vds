@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Thu Jul 31 01:28:05 2025
-# Process ID         : 203061
+# Start of session at: Fri Aug  1 15:01:28 2025
+# Process ID         : 229057
 # Current directory  : /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1
 # Command line       : vivado -log system.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system.tcl
 # Log file           : /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/system.vds
@@ -13,19 +13,15 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.1 LTS
 # Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13620H
-# CPU Frequency      : 710.625 MHz
+# CPU Frequency      : 1898.198 MHz
 # CPU Physical cores : 10
 # CPU Logical cores  : 16
 # Host memory        : 50116 MB
 # Swap memory        : 4294 MB
 # Total Virtual      : 54411 MB
-# Available Virtual  : 46316 MB
+# Available Virtual  : 44639 MB
 #-----------------------------------------------------------
 source system.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1480.227 ; gain = 0.027 ; free physical = 30822 ; free virtual = 43767
-INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2024.2/data/ip'.
 Command: read_checkpoint -auto_incremental -incremental /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/utils_1/imports/synth_1/system.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/utils_1/imports/synth_1/system.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -38,304 +34,116 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 203362
+INFO: [Synth 8-7075] Helper process launched with PID 229110
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2027.508 ; gain = 395.207 ; free physical = 29983 ; free virtual = 42929
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1993.531 ; gain = 429.801 ; free physical = 28063 ; free virtual = 41100
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:45]
-WARNING: [Synth 8-5640] Port 'screen' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'memory_addr' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'memory_write' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'memory_data_in' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'memory_data_out_lsb' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'memory_data_out_msb' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'stack_addr' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'stack_write' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'stack_data_in' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-WARNING: [Synth 8-5640] Port 'stack_data_out' is missing in component declaration [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:61]
-INFO: [Synth 8-3491] module 'core' declared at '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:35' bound to instance 'processor' of component 'core' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:97]
-INFO: [Synth 8-638] synthesizing module 'core' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:56]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:248]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:251]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:262]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:268]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:271]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:274]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:276]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 8 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:278]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:307]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 8 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:281]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 8 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:303]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 8 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:305]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 8 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:282]
-WARNING: [Synth 8-153] case item 8'b01010101 will never be executed [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:277]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:331]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:332]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:338]
-WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:349]
-INFO: [Synth 8-3491] module 'registers' declared at '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/registers.vhd:35' bound to instance 'registers_access' of component 'registers' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:374]
-INFO: [Synth 8-638] synthesizing module 'registers' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/registers.vhd:50]
-INFO: [Synth 8-256] done synthesizing module 'registers' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/registers.vhd:50]
-INFO: [Synth 8-3491] module 'flag' declared at '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/flag.vhd:34' bound to instance 'flag_access' of component 'flag' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:387]
-INFO: [Synth 8-638] synthesizing module 'flag' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/flag.vhd:43]
-INFO: [Synth 8-256] done synthesizing module 'flag' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/flag.vhd:43]
-INFO: [Synth 8-256] done synthesizing module 'core' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:56]
-INFO: [Synth 8-3491] module 'cache' declared at '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/cache.vhd:26' bound to instance 'memory' of component 'cache' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:103]
-INFO: [Synth 8-638] synthesizing module 'cache' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/cache.vhd:41]
-INFO: [Synth 8-256] done synthesizing module 'cache' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/cache.vhd:41]
-INFO: [Synth 8-3491] module 'video_out_wrapper' declared at '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/imports/hdl/video_out_wrapper.v:13' bound to instance 'video' of component 'video_out_wrapper' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:117]
-INFO: [Synth 8-6157] synthesizing module 'video_out_wrapper' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/imports/hdl/video_out_wrapper.v:13]
-INFO: [Synth 8-6157] synthesizing module 'video_out' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:13]
-INFO: [Synth 8-6157] synthesizing module 'video_out_axis_subset_converter_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_axis_subset_converter_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'video_out_axis_subset_converter_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_axis_subset_converter_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'video_out_clk_wiz_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'video_out_clk_wiz_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'video_out_rst_clk_wiz_74M_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_rst_clk_wiz_74M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'video_out_rst_clk_wiz_74M_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_rst_clk_wiz_74M_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'mb_reset' of module 'video_out_rst_clk_wiz_74M_0' is unconnected for instance 'rst_clk_wiz_74M' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:73]
-WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'video_out_rst_clk_wiz_74M_0' is unconnected for instance 'rst_clk_wiz_74M' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:73]
-WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'video_out_rst_clk_wiz_74M_0' is unconnected for instance 'rst_clk_wiz_74M' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:73]
-WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'video_out_rst_clk_wiz_74M_0' is unconnected for instance 'rst_clk_wiz_74M' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:73]
-WARNING: [Synth 8-7023] instance 'rst_clk_wiz_74M' of module 'video_out_rst_clk_wiz_74M_0' has 10 connections declared, but only 6 given [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:73]
-INFO: [Synth 8-6157] synthesizing module 'video_out_v_axi4s_vid_out_0_1' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_v_axi4s_vid_out_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'video_out_v_axi4s_vid_out_0_1' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_v_axi4s_vid_out_0_1_stub.v:6]
-WARNING: [Synth 8-7071] port 'vid_vblank' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'vid_hblank' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'vid_field_id' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'overflow' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'underflow' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'fifo_read_level' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'status' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7071] port 'sof_state_out' of module 'video_out_v_axi4s_vid_out_0_1' is unconnected for instance 'v_axi4s_vid_out_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-WARNING: [Synth 8-7023] instance 'v_axi4s_vid_out_0' of module 'video_out_v_axi4s_vid_out_0_1' has 30 connections declared, but only 22 given [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:80]
-INFO: [Synth 8-6157] synthesizing module 'video_out_v_tc_0_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_v_tc_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'video_out_v_tc_0_0' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/.Xil/Vivado-203061-calma-HP-Z2-Mini-G3-Workstation/realtime/video_out_v_tc_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'fsync_out' of module 'video_out_v_tc_0_0' is unconnected for instance 'v_tc_0' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:103]
-WARNING: [Synth 8-7023] instance 'v_tc_0' of module 'video_out_v_tc_0_0' has 11 connections declared, but only 10 given [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:103]
-INFO: [Synth 8-6155] done synthesizing module 'video_out' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/synth/video_out.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'video_out_wrapper' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/imports/hdl/video_out_wrapper.v:13]
-INFO: [Synth 8-256] done synthesizing module 'system' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:45]
-WARNING: [Synth 8-6014] Unused sequential element N_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:144]
-WARNING: [Synth 8-6014] Unused sequential element I_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:263]
-WARNING: [Synth 8-6014] Unused sequential element sound_timer_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:306]
-WARNING: [Synth 8-3848] Net screen in module/entity core does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:39]
-WARNING: [Synth 8-3848] Net stack_data_out in module/entity core does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:48]
-WARNING: [Synth 8-3848] Net RB_data_in in module/entity core does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:112]
-WARNING: [Synth 8-4767] Trying to implement RAM 'memory_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
-	2: Unable to determine number of words or word size in RAM. 
-	3: No valid read/write found for RAM. 
-RAM "memory_reg" dissolved into registers
-WARNING: [Synth 8-3848] Net stack_data_out in module/entity cache does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/cache.vhd:37]
-WARNING: [Synth 8-3848] Net reset_rtl in module/entity system does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:82]
-WARNING: [Synth 8-3848] Net s_axis_tdata in module/entity system does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:83]
-WARNING: [Synth 8-3848] Net s_axis_tvalid in module/entity system does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:84]
-WARNING: [Synth 8-3848] Net memory_data_in in module/entity system does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:89]
-WARNING: [Synth 8-3848] Net stack_addr in module/entity system does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:92]
-WARNING: [Synth 8-3848] Net stack_data_in in module/entity system does not have driver. [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:94]
-WARNING: [Synth 8-7129] Port stack_data_out[7] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[6] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[5] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[4] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[3] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[2] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[1] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_data_out[0] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port memory_addr[15] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port memory_addr[14] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port memory_addr[13] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port memory_addr[12] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port memory_addr[11] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port memory_addr[10] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_addr[15] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_addr[14] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_addr[13] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_addr[12] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_addr[11] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port stack_addr[10] in module cache is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2047] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2046] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2045] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2044] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2043] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2042] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2041] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2040] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2039] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2038] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2037] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2036] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2035] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2034] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2033] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2032] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2031] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2030] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2029] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2028] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2027] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2026] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2025] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2024] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2023] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2022] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2021] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2020] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2019] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2018] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2017] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2016] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2015] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2014] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2013] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2012] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2011] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2010] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2009] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2008] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2007] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2006] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2005] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2004] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2003] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2002] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2001] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[2000] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1999] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1998] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1997] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1996] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1995] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1994] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1993] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1992] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1991] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1990] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1989] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1988] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1987] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1986] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1985] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1984] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1983] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1982] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1981] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1980] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1979] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1978] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1977] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1976] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1975] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1974] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1973] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1972] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1971] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1970] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1969] in module core is either unconnected or has no load
-WARNING: [Synth 8-7129] Port screen[1968] in module core is either unconnected or has no load
-INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-638] synthesizing module 'system' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:42]
+INFO: [Synth 8-3491] module 'core' declared at '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:35' bound to instance 'processor' of component 'core' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:63]
+INFO: [Synth 8-638] synthesizing module 'core' [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'core' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'system' (0#1) [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/system.vhd:42]
+WARNING: [Synth 8-6014] Unused sequential element RA_addr_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:142]
+WARNING: [Synth 8-6014] Unused sequential element RB_addr_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:144]
+WARNING: [Synth 8-6014] Unused sequential element N_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:147]
+WARNING: [Synth 8-6014] Unused sequential element flag_write_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:255]
+WARNING: [Synth 8-6014] Unused sequential element flag_status_in_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:256]
+WARNING: [Synth 8-6014] Unused sequential element I_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:265]
+WARNING: [Synth 8-6014] Unused sequential element sound_timer_reg was removed.  [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/sources_1/new/core.vhd:286]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2175.445 ; gain = 543.145 ; free physical = 29799 ; free virtual = 42747
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2068.469 ; gain = 504.738 ; free physical = 28103 ; free virtual = 41143
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2181.383 ; gain = 549.082 ; free physical = 29808 ; free virtual = 42754
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2086.281 ; gain = 522.551 ; free physical = 28103 ; free virtual = 41143
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2181.383 ; gain = 549.082 ; free physical = 29808 ; free virtual = 42754
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2086.281 ; gain = 522.551 ; free physical = 28103 ; free virtual = 41143
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.15 . Memory (MB): peak = 2181.383 ; gain = 0.000 ; free physical = 29809 ; free virtual = 42756
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2086.281 ; gain = 0.000 ; free physical = 28103 ; free virtual = 41143
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_tc_0_0/video_out_v_tc_0_0/video_out_v_tc_0_0_in_context.xdc] for cell 'video/video_out_i/v_tc_0'
-Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_tc_0_0/video_out_v_tc_0_0/video_out_v_tc_0_0_in_context.xdc] for cell 'video/video_out_i/v_tc_0'
-Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_axi4s_vid_out_0_1/video_out_v_axi4s_vid_out_0_1/video_out_v_axi4s_vid_out_0_1_in_context.xdc] for cell 'video/video_out_i/v_axi4s_vid_out_0'
-Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_v_axi4s_vid_out_0_1/video_out_v_axi4s_vid_out_0_1/video_out_v_axi4s_vid_out_0_1_in_context.xdc] for cell 'video/video_out_i/v_axi4s_vid_out_0'
-Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0/video_out_clk_wiz_0_in_context.xdc] for cell 'video/video_out_i/clk_wiz'
-Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0/video_out_clk_wiz_0_in_context.xdc] for cell 'video/video_out_i/clk_wiz'
-Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0_in_context.xdc] for cell 'video/video_out_i/rst_clk_wiz_74M'
-Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0/video_out_rst_clk_wiz_74M_0_in_context.xdc] for cell 'video/video_out_i/rst_clk_wiz_74M'
-Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0_in_context.xdc] for cell 'video/video_out_i/axis_subset_converter_0'
-Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0/video_out_axis_subset_converter_0_0_in_context.xdc] for cell 'video/video_out_i/axis_subset_converter_0'
-Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/constrs_1/new/master.xdc]
+Finished Parsing XDC File [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/constrs_1/new/master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.srcs/constrs_1/new/master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/system_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/system_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2283.848 ; gain = 0.000 ; free physical = 29840 ; free virtual = 42787
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2238.031 ; gain = 0.000 ; free physical = 28091 ; free virtual = 41129
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2283.848 ; gain = 0.000 ; free physical = 29840 ; free virtual = 42787
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2238.031 ; gain = 0.000 ; free physical = 28091 ; free virtual = 41129
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2283.848 ; gain = 651.547 ; free physical = 29863 ; free virtual = 42810
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2238.031 ; gain = 674.301 ; free physical = 28062 ; free virtual = 41109
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2291.852 ; gain = 659.551 ; free physical = 29863 ; free virtual = 42810
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2246.035 ; gain = 682.305 ; free physical = 28062 ; free virtual = 41109
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property IO_BUFFER_TYPE = NONE for clk. (constraint file  /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0/video_out_clk_wiz_0_in_context.xdc, line 3).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  /home/calma/Workspace/personal/chip8_emulator/chip8_emulator.gen/sources_1/bd/video_out/ip/video_out_clk_wiz_0/video_out_clk_wiz_0/video_out_clk_wiz_0_in_context.xdc, line 4).
-Applied set_property KEEP_HIERARCHY = SOFT for video/video_out_i. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for video/video_out_i/v_tc_0. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for video/video_out_i/v_axi4s_vid_out_0. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for video/video_out_i/clk_wiz. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for video/video_out_i/rst_clk_wiz_74M. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for video/video_out_i/axis_subset_converter_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:16 . Memory (MB): peak = 2291.852 ; gain = 659.551 ; free physical = 29863 ; free virtual = 42810
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2246.035 ; gain = 682.305 ; free physical = 28062 ; free virtual = 41109
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'stage_reg' in module 'core'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   fetch |                             0001 |                               00
+                  decode |                             0010 |                               01
+                 execute |                             0100 |                               10
+                   write |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'stage_reg' using encoding 'one-hot' in module 'core'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 2291.852 ; gain = 659.551 ; free physical = 29964 ; free virtual = 42912
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2246.035 ; gain = 682.305 ; free physical = 28062 ; free virtual = 41110
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input   24 Bit       Adders := 1     
 	   2 Input   16 Bit       Adders := 1     
 	   2 Input   13 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 1     
 	   2 Input    8 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 1     
 +---XORs : 
 	   2 Input      8 Bit         XORs := 1     
 +---Registers : 
-	               16 Bit    Registers := 3     
+	               24 Bit    Registers := 1     
+	               16 Bit    Registers := 2     
 	               12 Bit    Registers := 1     
-	                8 Bit    Registers := 1008  
-	                5 Bit    Registers := 3     
+	                8 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 4     
-	                1 Bit    Registers := 9     
+	                1 Bit    Registers := 1     
 +---RAMs : 
 	              120 Bit	(15 X 8 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input 8008 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 1     
 	   3 Input   16 Bit        Muxes := 1     
 	   4 Input   16 Bit        Muxes := 1     
-	   2 Input    8 Bit        Muxes := 4     
+	1002 Input    8 Bit        Muxes := 2     
+	  14 Input    8 Bit        Muxes := 1     
 	   4 Input    8 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 1     
+	   5 Input    8 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 1     
 	   3 Input    2 Bit        Muxes := 1     
-	   4 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 7     
-	   4 Input    1 Bit        Muxes := 13    
-	   3 Input    1 Bit        Muxes := 3     
-	  14 Input    1 Bit        Muxes := 1     
-	   6 Input    1 Bit        Muxes := 1     
-	   5 Input    1 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 6     
+	   2 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -353,25 +161,54 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:40 . Memory (MB): peak = 2291.852 ; gain = 659.551 ; free physical = 29934 ; free virtual = 42908
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2246.035 ; gain = 682.305 ; free physical = 28048 ; free virtual = 41099
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+------------------+-----------+----------------------+---------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
++------------+------------------+-----------+----------------------+---------------+
+|system      | processor/VX_reg | Implied   | 16 x 8               | RAM16X1D x 8  | 
++------------+------------------+-----------+----------------------+---------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 2299.852 ; gain = 667.551 ; free physical = 29869 ; free virtual = 42842
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2262.035 ; gain = 698.305 ; free physical = 27954 ; free virtual = 41005
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 2299.852 ; gain = 667.551 ; free physical = 29869 ; free virtual = 42842
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2262.035 ; gain = 698.305 ; free physical = 27954 ; free virtual = 41005
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++------------+------------------+-----------+----------------------+---------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
++------------+------------------+-----------+----------------------+---------------+
+|system      | processor/VX_reg | Implied   | 16 x 8               | RAM16X1D x 8  | 
++------------+------------------+-----------+----------------------+---------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 2317.867 ; gain = 685.566 ; free physical = 29853 ; free virtual = 42827
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2291.082 ; gain = 727.352 ; free physical = 27930 ; free virtual = 40982
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -389,86 +226,91 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished IO Insertion : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 Report BlackBoxes: 
-+------+------------------------------------+----------+
-|      |BlackBox name                       |Instances |
-+------+------------------------------------+----------+
-|1     |video_out_axis_subset_converter_0_0 |         1|
-|2     |video_out_clk_wiz_0                 |         1|
-|3     |video_out_rst_clk_wiz_74M_0         |         1|
-|4     |video_out_v_axi4s_vid_out_0_1       |         1|
-|5     |video_out_v_tc_0_0                  |         1|
-+------+------------------------------------+----------+
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
 
 Report Cell Usage: 
-+------+----------------------------------+------+
-|      |Cell                              |Count |
-+------+----------------------------------+------+
-|1     |video_out_axis_subset_converter_0 |     1|
-|2     |video_out_clk_wiz                 |     1|
-|3     |video_out_rst_clk_wiz_74M         |     1|
-|4     |video_out_v_axi4s_vid_out_0       |     1|
-|5     |video_out_v_tc_0                  |     1|
-|6     |OBUF                              |    12|
-+------+----------------------------------+------+
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |    15|
+|3     |LUT1     |     2|
+|4     |LUT2     |    28|
+|5     |LUT3     |    11|
+|6     |LUT4     |    10|
+|7     |LUT5     |    25|
+|8     |LUT6     |    48|
+|9     |RAM16X1D |     8|
+|10    |FDRE     |    67|
+|11    |FDSE     |     5|
+|12    |IBUF     |     2|
+|13    |OBUF     |     4|
++------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.680 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2440.895 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 2472.680 ; gain = 737.914 ; free physical = 29727 ; free virtual = 42701
-Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:45 . Memory (MB): peak = 2472.688 ; gain = 840.379 ; free physical = 29727 ; free virtual = 42701
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2440.895 ; gain = 725.414 ; free physical = 27812 ; free virtual = 40852
+Synthesis Optimization Complete : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2440.902 ; gain = 877.164 ; free physical = 27812 ; free virtual = 40852
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2472.688 ; gain = 0.000 ; free physical = 29719 ; free virtual = 42693
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2440.902 ; gain = 0.000 ; free physical = 27950 ; free virtual = 40991
+INFO: [Netlist 29-17] Analyzing 23 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2472.688 ; gain = 0.000 ; free physical = 29798 ; free virtual = 42772
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2496.922 ; gain = 0.000 ; free physical = 27978 ; free virtual = 41018
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 8 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 8 instances
 
-Synth Design complete | Checksum: 31a97058
+Synth Design complete | Checksum: 8eb955a
 INFO: [Common 17-83] Releasing license: Synthesis
-52 Infos, 159 Warnings, 0 Critical Warnings and 0 Errors encountered.
+28 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:05 ; elapsed = 00:00:56 . Memory (MB): peak = 2472.688 ; gain = 992.461 ; free physical = 29798 ; free virtual = 42772
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1686.912; main = 1681.251; forked = 266.410
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3208.848; main = 2472.684; forked = 916.992
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2496.691 ; gain = 0.000 ; free physical = 29798 ; free virtual = 42772
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 2496.922 ; gain = 1020.691 ; free physical = 27978 ; free virtual = 41018
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1628.142; main = 1628.142; forked = 259.950
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3163.031; main = 2496.926; forked = 916.992
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2520.934 ; gain = 0.000 ; free physical = 27978 ; free virtual = 41018
 INFO: [Common 17-1381] The checkpoint '/home/calma/Workspace/personal/chip8_emulator/chip8_emulator.runs/synth_1/system.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file system_utilization_synth.rpt -pb system_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Jul 31 01:29:10 2025...
+INFO: [Common 17-206] Exiting Vivado at Fri Aug  1 15:01:52 2025...

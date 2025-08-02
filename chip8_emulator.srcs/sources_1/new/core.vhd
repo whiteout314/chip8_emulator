@@ -34,49 +34,29 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity core is
     Port (
-        clk : in std_logic;
-        clear_screen: inout std_logic;
-        screen: out std_logic_vector(2047 downto 0);
-        memory_addr: inout std_logic_vector(15 downto 0); 
-        memory_write: inout std_logic;
-        memory_data_in: in std_logic_vector(7 downto 0); 
-        memory_data_out_lsb: inout std_logic_vector(7 downto 0);
-        memory_data_out_msb: inout std_logic_vector(7 downto 0);
-        stack_addr: in std_logic_vector(15 downto 0); 
-        stack_write: inout std_logic; 
-        stack_data_in: in std_logic_vector(7 downto 0);
-        stack_data_out: out std_logic_vector(7 downto 0)
-       
-       
-       
+        clk: in std_logic;
+        input : in std_logic;
+        PC: inout std_logic_vector(3 downto 0)
     );
 
 end core;
 
 architecture Behavioral of core is
-  
-    component registers
-        port (
-            clk: in std_logic;
-            RA_write: inout std_logic;
-            RA_data_in: in std_logic_vector (7 downto 0); 
-            RA_data_out: out std_logic_vector (7 downto 0); 
-            RA_addr: in std_logic_vector(3 downto 0);
-            RB_write: inout std_logic;
-            RB_data_in: in std_logic_vector (7 downto 0);
-            RB_data_out: out std_logic_vector(7 downto 0);
-            RB_addr: in std_logic_vector (3 downto 0)
-        );
-    end component;
+    type register_arr is array (0 to 14) of std_logic_vector (7 downto 0);
+    signal VX: register_arr := (6 => x"22", others => (others => '0'));
+    type mem_cell is array (0 to 1000) of std_logic_vector(7 downto 0);
+    signal memory: mem_cell := (
+    --- Load V0, V6
+    0 => x"80", 1 => x"60",
+
+
+    4 => x"70", 5 => x"22",
     
-    component flag 
-        port (
-            clk: in std_logic;
-            flag_write: inout std_logic;
-            flag_status_in: in std_logic;
-            flag_status_out: out std_logic
-        );
-     end component;
+    -- Jump to wait loop (address 0x212)
+    6 => x"10", 7 => x"00",
+    others => (others => '0')  -- Fill rest with zeros; 
+    );
+    
 
     -- Control FSM stages
     type mode is (FETCH, DECODE, EXECUTE, WRITE);
@@ -91,8 +71,6 @@ architecture Behavioral of core is
     );
     signal state : instruction := OP_CLS;
     --- Instruction fields 
-    signal opcode : std_logic_vector(15 downto 0) := X"0000";
-    signal PC     : std_logic_vector(15 downto 0) := X"0000"; 
     signal SP     : std_logic_vector(15 downto 0) := X"0000";
     signal X      : std_logic_vector(3 downto 0) := X"0";
     signal I      : std_logic_vector(15 downto 0) := x"0000";
@@ -101,50 +79,70 @@ architecture Behavioral of core is
     signal KK     : std_logic_vector(7 downto 0) := X"00";
     signal N      : std_logic_vector(3 downto 0):= X"0";
     --- data path signal
-    signal data_path_msb : std_logic_vector(4 downto 0);
-    signal data_path_lsb : std_logic_vector(4 downto 0);
+    signal data_path_msb : std_logic_vector(3 downto 0) := x"0";
+    signal data_path_lsb : std_logic_vector(3 downto 0) := x"0";
     --- Register control 
-    signal RA_write: std_logic;
-    signal RA_data_in: std_logic_vector (7 downto 0);
-    signal RA_data_out: std_logic_vector (7 downto 0);
-    signal RA_addr: std_logic_vector(3 downto 0);
-    signal RB_write: std_logic;
-    signal RB_data_in: std_logic_vector(7 downto 0);
-    signal RB_data_out: std_logic_vector(7 downto 0);
-    signal RB_addr: std_logic_vector(3 downto 0);
+    signal RA_write: std_logic := '0';
+    signal RA_data_in: std_logic_vector (7 downto 0) := x"00";
+    signal RA_addr: std_logic_vector(3 downto 0) := x"0";
+    signal RB_write: std_logic := '0';
+    signal RB_data_in: std_logic_vector(7 downto 0) := x"00";
+    signal RB_addr: std_logic_vector(3 downto 0) := x"0";
     -- Flag control
-    signal flag_write: std_logic; 
-    signal flag_status_in: std_logic;
-    signal flag_status_out: std_logic;
+    signal flag_write: std_logic := '0'; 
+    signal flag_status_in: std_logic := '0';
+    signal flag_status_out: std_logic := '0';
     --- Timers
     signal delay_timer: std_logic_vector(7 downto 0);
     signal sound_timer: std_logic_vector(7 downto 0);
-    signal draw_line_index: std_logic_vector(7 downto 0);
-    signal draw_addr: std_logic_vector(7 downto 0);
+    signal pce : std_logic_vector(15 downto 0) := x"0000";
+    
+    --- Memory
+    signal memory_addr: std_logic_vector(15 downto 0) := x"0000";
+    signal memory_write: std_logic := '0';
+    signal memory_data_in: std_logic_vector(7 downto 0) := x"00"; 
+    signal memory_data_out_lsb: std_logic_vector(7 downto 0) := x"00";
+    signal memory_data_out_msb: std_logic_vector(7 downto 0) := x"00";
+    signal stack_addr: std_logic_vector(15 downto 0) := x"0000";
+    signal stack_write: std_logic := '0';
+    signal stack_data_in: std_logic_vector(7 downto 0) := x"00";
+    signal stack_data_out: std_logic_vector(7 downto 0) := x"00";
+    signal opcode : std_logic_vector(15 downto 0) := x"0000";
+    constant TARGET_CYCLES : integer := 10_000_000;  -- 1 second at 100 MHz
+    signal counter : integer range 0 to TARGET_CYCLES := 0;
+    signal clk_en : std_logic := '0';
 begin
-
     processor : process(clk)
     begin
-        if rising_edge(clk) then
+        if rising_edge(clk) then 
+            
+            
+                
+            
+            
             case stage is
                 when FETCH => 
                     --- Fetch OP Instruction --- 
-                    memory_addr <= PC;
                     
+                    opcode <= std_logic_vector(shift_left(resize(unsigned(memory(to_integer(unsigned(pce)))), 16), 8) or resize(unsigned(memory(to_integer(unsigned(pce) + 1))), 16));                   
+                    PC <= pce(3 downto 0);
+                    stage <= DECODE;
                     
+                
                     
-                when DECODE =>
-                    opcode <= std_logic_vector(shift_left(resize(unsigned(memory_data_out_msb), 16), 8) or resize(unsigned(memory_data_out_lsb), 16));
+                 when DECODE => 
                     X <= opcode(11 downto 8);
-                    RA_addr <= std_logic_vector(resize(unsigned(X), 4));
+                    RA_addr <= X;
                     Y   <= opcode(7 downto 4);
-                    RB_addr <= std_logic_vector(resize(unsigned(Y), 4));
+                    RB_addr <= Y;
                     NNN <= opcode(11 downto 0);
                     KK  <= opcode(7 downto 0);
                     N <= opcode(3 downto 0);
-                    data_path_msb <= opcode(15 downto 11);
-                    data_path_lsb <= opcode(4 downto 0);
+                    data_path_msb <= opcode(15 downto 12);
+                    data_path_lsb <= opcode(3 downto 0);
                     
+                    
+               
                     case opcode(15 downto 12) is
                     
                         when X"0" =>
@@ -206,7 +204,7 @@ begin
                 --- SUBN Vx, Vy [8xy7] --- IMPLEMENTED (data_path_msb = X"8", lsb = X"7")
                 --- SHL Vx {, Vy} [8xyE] --- IMPLEMENTED
                 --- LD I, addr [Annn] --- IMPLEMENTED (data_path_msb = X"A")
-                --- JP V0, addr [Bnnn] --- IMPLEMENTED (data_path_msb = X"B")
+                --- JP V0, addr [Bnnn] --- VX(to_integer(unsigned(RA_addr)))IMPLEMENTED (data_path_msb = X"B")
                 --- RND Vx, byte [Cxkk] --- NOT IMPLEMENTED
                 --- DRW Vx, Vy, nibble [Dxyn] --- NOT IMPLEMENTED
                 --- SKP Vx [Ex9E] --- NOT IMPLEMENTED
@@ -221,89 +219,64 @@ begin
                 --- LD [I], Vx [Fx55] --- IMPLEMENTED
                 --- LD Vx, [I] [Fx65] --- NOT IMPLEMENTED
                     case state is
-                        when OP_CLS => 
-                            clear_screen <= '1';
+                        when OP_CLS => null;
                         when OP_SE =>
-                            if RA_data_out = RB_data_out then
+                            if VX(to_integer(unsigned(X))) = VX(to_integer(unsigned(Y))) then
                                 PC <= std_logic_vector(unsigned(PC) + 2);
                             end if;
                         when OP_SNE =>  
-                            if RA_data_out /= RB_data_out then 
+                            if VX(to_integer(unsigned(X))) /= VX(to_integer(unsigned(Y))) then 
                                 PC <= std_logic_vector(unsigned(PC) + 2);
                             end if;  
                         when OP_AND =>
-                            RA_data_in <= RA_data_out and RB_data_out;  -- ⚠ FIX THIS: should be values of Vx and Vy, not indices
-                            RA_addr  <= X;
-                            RA_write <= '1';
+                            VX(to_integer(unsigned(X))) <= VX(to_integer(unsigned(X))) and VX(to_integer(unsigned(Y)));  -- ⚠ FIX THIS: should be values of Vx and Vy, not indices
+                            
+                          
                         when OP_OR =>
-                            RA_data_in <= RA_data_out or RB_data_out;
-                            RA_addr <= X;
-                            RA_write <= '1';
+                            VX(to_integer(unsigned(X))) <= VX(to_integer(unsigned(X))) or VX(to_integer(unsigned(Y)));
+                            
                         when OP_XOR => 
-                            RA_data_in <= RA_data_out xor RB_data_out;
-                            RA_addr <= X;
-                            RA_write <= '1';
+                            VX(to_integer(unsigned(X))) <= VX(to_integer(unsigned(X))) xor VX(to_integer(unsigned(Y)));
+                            
                         when OP_ADD =>
                             case data_path_msb is 
                                 when X"7" =>
-                                    RA_data_in <= std_logic_vector(unsigned(RA_data_out) + unsigned(KK));
-                                    RA_write <= '1';
+                                    VX(to_integer(unsigned(X))) <= std_logic_vector(unsigned(VX(to_integer(unsigned(X)))) + unsigned(KK));
+                                    
                                 when X"8" => 
-                                    if unsigned(RA_data_out) + unsigned(RB_data_out) > 254 then 
+                                    if unsigned(VX(to_integer(unsigned(X)))) + unsigned(VX(to_integer(unsigned(Y)))) > 254 then 
                                         flag_write <= '1';
                                         flag_status_in <= '1';
                                     else
                                         flag_write <= '1';
                                         flag_status_in <= '0';
                                     end if; 
-                                    RA_data_in <= std_logic_vector(unsigned(RA_data_out) + unsigned(RB_data_out));
-                                    RA_addr <= X;
-                                    RA_write <= '1';
+                                    VX(to_integer(unsigned(X))) <= std_logic_vector(unsigned(VX(to_integer(unsigned(X)))) + unsigned(VX(to_integer(unsigned(Y)))));
+                                  
+                                    
                                  when x"F" => 
-                                    I <= std_logic_vector(unsigned(I) + unsigned(RA_data_out)); 
+                                    I <= std_logic_vector(unsigned(I) + unsigned(VX(to_integer(unsigned(X))))); 
                                  when others => null;  
                             end case;
                         when OP_LD => 
                             case data_path_msb is 
                                 when X"6" => 
-                                    RA_data_in <= KK;
-                                    RA_write <= '1';
+                                    VX(to_integer(unsigned(X))) <= KK;
+                                   
                                 when X"8" => 
-                                    RA_data_in <= RB_data_in;
-                                    RA_write <= '1';
+                                    VX(to_integer(unsigned(X))) <= VX(to_integer(unsigned(Y)));
+                                    
                                 when x"A" => 
                                     I <= std_logic_vector(resize(unsigned(NNN), 16));
                                 when x"F" => 
                                     case data_path_lsb is 
-                                        when X"07" => 
-                                            RA_data_in <= delay_timer;
-                                            RA_write <= '1';
-                                        when X"0A" => null;
-                                        when x"55" => null;
-                                            --- if rising_edge(clk) then
-                                           ---     memory_addr  <= I;
-                                           ---     memory_data_in <= RA_data_in;
-                                           ---     memory_write <= '1';
-                                           --- end if;
-                                           --- if rising_edge(clk) then
-                                           ---     memory_addr  <= std_logic_vector(unsigned(I));
-                                           ---     memory_data_in <= std_logic_vector(unsigned(RA_data_in) mod 10);
-                                           ---     memory_write <= '1';
-                                           ---  end if;
-                                           --- if rising_edge(clk) then
-                                           ---     memory_addr  <= std_logic_vector(unsigned(I) + 1);
-                                           ---     memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 100) / 10);
-                                           ---     memory_write <= '1';
-                                           --- end if;
-                                           --- if rising_edge(clk) then
-                                           ---     memory_addr  <= std_logic_vector(unsigned(I) + 2);
-                                           ---     memory_data_in <= std_logic_vector((unsigned(RA_data_in) mod 1000) / 100);
-                                           ---      memory_write <= '1';
-                                           --- end if;
-                                        when X"15" => 
-                                            delay_timer <= RA_data_out;
-                                        when X"18" => 
-                                            sound_timer <= RA_data_out;
+                                        when X"7" => 
+                                            VX(to_integer(unsigned(X))) <= delay_timer;
+                                        when X"A" => null;
+                                        when X"5" => 
+                                            delay_timer <= VX(to_integer(unsigned(X)));
+                                        when X"8" => 
+                                            sound_timer <= VX(to_integer(unsigned(X)));
                                         when X"9" => null; 
                                         when others => null;
                                         
@@ -317,79 +290,56 @@ begin
                                 flag_status_in <= '0';
                             end if;
                             flag_write <= '1';
-                            RA_data_in <= std_logic_vector(shift_left(unsigned(RA_data_out), 1));
+                            VX(to_integer(unsigned(X))) <= std_logic_vector(shift_left(unsigned(VX(to_integer(unsigned(X)))), 1));
                         when OP_SHR => 
-                            if (RA_data_in(0) = '1') then
+                            if (VX(to_integer(unsigned(X)))(0) = '1') then
                                 flag_status_in <= '1';
                             else
                                 flag_status_in <= '0';
                             end if;
                             flag_write <= '1';
-                             RA_data_in <= std_logic_vector(shift_right(unsigned(RA_data_out), 1));
+                             VX(to_integer(unsigned(X))) <= std_logic_vector(shift_right(unsigned(VX(to_integer(unsigned(X)))), 1));
                         when OP_JP => 
                             case data_path_msb is 
-                                when X"1" => PC <= std_logic_vector(resize(unsigned(NNN), 16));
-                                when X"B" => PC <= std_logic_vector(unsigned(RA_data_out) + resize(unsigned(NNN), 16)); 
+                                when X"1" => pce <= std_logic_vector(resize(unsigned(NNN), 16));
+                                when X"B" => pce <= std_logic_vector(unsigned(VX(to_integer(unsigned(X)))) + resize(unsigned(NNN), 16)); 
                                 when others => null;
                             end case;  
                         when OP_DRW => NULL;              
                         when OP_SUB => 
                             case data_path_lsb is
                                when X"5" =>   
-                                    if unsigned(RA_data_out) > unsigned(RB_data_out) then
-                                        flag_write <= '1';
+                                    if unsigned(VX(to_integer(unsigned(X)))) > unsigned(VX(to_integer(unsigned(Y)))) then
                                         flag_status_in <= '1';
                                     else 
-                                        flag_write <= '1';
                                         flag_status_in <= '0';
                                     end if;
-                                    RA_data_in <= std_logic_vector(unsigned(RA_data_out) + unsigned(RB_data_out));
-                                    RA_addr <= x;
-                                    RA_write <= '1';
+                                    VX(to_integer(unsigned(X))) <= std_logic_vector(unsigned(VX(to_integer(unsigned(X)))) + unsigned(VX(to_integer(unsigned(Y)))));
+                                    
+                                   
                               when X"7" => 
-                                    if unsigned(RB_data_out) > unsigned(RA_data_out) then
-                                        flag_write <= '1';
+                                    if unsigned(VX(to_integer(unsigned(Y)))) > unsigned(VX(to_integer(unsigned(X)))) then  
                                         flag_status_in <= '1';
                                     else 
-                                        flag_write <= '1';
                                         flag_status_in <= '0';
                                     end if;
-                                    RA_data_in <= std_logic_vector(unsigned(RB_data_out) + unsigned(RA_data_out));
-                                    RA_addr <= x;
-                                    RA_write <= '1';
+                                   
+                                    
                              when others => null;
                             end case;
                         when others => null;
                     end case;
                     stage <= WRITE;
                  when WRITE =>
-                    PC <= std_logic_vector(unsigned(PC) + 2);
+                    pce <= std_logic_vector(unsigned(pce) + 2);
+                   
                     stage <= FETCH;
             end case;
-           
-        end if;
+            
+           end if;
     end process;
     
     
-    registers_access: registers 
-        port map(
-            clk => clk,
-            RA_write => RA_write,
-            RA_data_in => RA_data_in,
-            RA_data_out => RA_data_out,
-            RA_addr => RA_addr,
-            RB_write => RB_write,
-            RB_data_in => RB_data_in,
-            RB_data_out => RB_data_out,
-            RB_addr => RB_addr
-        ); 
-
-    flag_access: flag 
-        port map (
-            clk => clk,
-            flag_write => flag_write,
-            flag_status_in => flag_status_in,
-            flag_status_out => flag_status_out
-        );
+    
      
 end Behavioral;
